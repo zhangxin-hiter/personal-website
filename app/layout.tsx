@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Navigation from "./components/Navigation";
+import Fireworks from "./components/Fireworks";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" className="scroll-smooth">
       <body className="antialiased">
+        <Fireworks />
         <Navigation>{children}</Navigation>
       </body>
     </html>
