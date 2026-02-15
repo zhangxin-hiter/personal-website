@@ -210,14 +210,6 @@ export default function Home() {
           <h3 className="text-base font-semibold text-gray-900 mb-3">个人链接</h3>
           <div className="flex gap-4 text-sm">
             <a
-              href="https://zhangxin-hiter.github.io"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              个人主页
-            </a>
-            <a
               href="https://github.com/zhangxin-hiter"
               target="_blank"
               rel="noopener noreferrer"
