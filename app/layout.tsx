@@ -47,7 +47,7 @@ export default function RootLayout({
               <div className="text-center text-sm text-gray-500">
                 <p>© 2026 张昕个人主页</p>
               </div>
-              <div className="mt-4" id="clustrmaps-container">
+              <div className="mt-4 w-48 h-32 overflow-hidden" id="clustrmaps-container">
                 <Script
                   id="clustrmaps"
                   strategy="lazyOnload"
