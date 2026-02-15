@@ -21,17 +21,17 @@ export default function RootLayout({
                 Home
               </a>
               <div className="flex gap-6">
-                <a href="#research" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                  Research
+                <a href="#education" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                  教育背景
                 </a>
-                <a href="#publications" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                  Publications
+                <a href="#projects" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                  项目经历
                 </a>
-                <a href="#teaching" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                  Teaching
+                <a href="#skills" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                  专业技能
                 </a>
                 <a href="#contact" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                  Contact
+                  联系方式
                 </a>
               </div>
             </div>
@@ -41,8 +41,15 @@ export default function RootLayout({
           {children}
         </main>
         <footer className="bg-gray-50 border-t border-gray-200 mt-20">
-          <div className="max-w-5xl mx-auto px-6 py-8 text-center text-sm text-gray-500">
-            <p>© 2026 Academic Personal Website. All rights reserved.</p>
+          <div className="max-w-5xl mx-auto px-6 py-8">
+            <div className="flex flex-col items-center gap-4">
+              <div className="text-center text-sm text-gray-500">
+                <p>© 2026 张昕个人主页</p>
+              </div>
+              <div className="mt-4">
+                <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=YOUR_CLUSTRMAPS_ID&cl=ffffff&w=a"></script>
+              </div>
+            </div>
           </div>
         </footer>
       </body>
