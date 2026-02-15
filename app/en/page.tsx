@@ -75,6 +75,46 @@ export default function Home() {
         </section>
       </AnimatedSection>
 
+      <AnimatedSection>
+        <section id="internship" className="mb-16 scroll-mt-20">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-1 h-8 bg-[#c9a227] rounded-full"></div>
+            <h2 className="text-2xl font-serif font-bold text-[#1e3a5f]">
+              Internship
+            </h2>
+          </div>
+          <div className="bg-white rounded-lg shadow-md border-l-4 border-[#059669] p-6 hover:shadow-lg transition-shadow duration-300">
+            <div className="flex justify-between items-start mb-3">
+              <div>
+                <h3 className="text-xl font-semibold text-[#1e3a5f]">
+                  Southchip Semiconductor
+                </h3>
+                <p className="text-[#475569] mt-1 font-medium">Analog IC Verification Intern</p>
+              </div>
+              <span className="text-sm text-[#64748b] bg-[#f1f5f9] px-3 py-1 rounded-full">Dec 2025 - Apr 2026</span>
+            </div>
+            <ul className="text-[#475569] space-y-2 mt-4">
+              <li className="flex items-start">
+                <span className="text-[#059669] mr-2 mt-1.5">◆</span>
+                <span>Participated in verification testing of power management ICs (PMIC), focusing on chip functionality and performance testing</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#059669] mr-2 mt-1.5">◆</span>
+                <span>Conducted chip electrical characteristic tests using oscilloscopes, signal generators, and electronic loads</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#059669] mr-2 mt-1.5">◆</span>
+                <span>Assisted in test data recording and analysis, prepared test reports</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#059669] mr-2 mt-1.5">◆</span>
+                <span>Gained hands-on experience in chip R&D processes and analog circuit design verification</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </AnimatedSection>
+
       {/* Projects Section */}
       <AnimatedSection delay={100}>
         <section id="projects" className="mb-16 scroll-mt-20">
