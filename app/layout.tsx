@@ -47,7 +47,7 @@ export default function RootLayout({
                 <p>© 2026 张昕个人主页</p>
               </div>
               <div className="mt-4">
-                <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=YOUR_CLUSTRMAPS_ID&cl=ffffff&w=a"></script>
+                <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=7NKnjFd9sTzDrKdIaJlf34f2X7ZY_WSFuMH_AnY5BPA&cl=ffffff&w=a"></script>
               </div>
             </div>
           </div>
