@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Academic Personal Website",
-  description: "Academic research and publications",
+  title: "张昕 - 个人主页",
+  description: "哈尔滨工业大学(深圳)通信工程本科生",
 };
 
 export default function RootLayout({
@@ -18,7 +19,7 @@ export default function RootLayout({
           <div className="max-w-5xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <a href="/" className="text-xl font-semibold text-gray-900 hover:text-blue-600 transition-colors">
-                Home
+                首页
               </a>
               <div className="flex gap-6">
                 <a href="#education" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
@@ -46,8 +47,12 @@ export default function RootLayout({
               <div className="text-center text-sm text-gray-500">
                 <p>© 2026 张昕个人主页</p>
               </div>
-              <div className="mt-4">
-                <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=7NKnjFd9sTzDrKdIaJlf34f2X7ZY_WSFuMH_AnY5BPA&cl=ffffff&w=a"></script>
+              <div className="mt-4" id="clustrmaps-container">
+                <Script
+                  id="clustrmaps"
+                  strategy="lazyOnload"
+                  src="//clustrmaps.com/map_v2.js?d=7NKnjFd9sTzDrKdIaJlf34f2X7ZY_WSFuMH_AnY5BPA&cl=ffffff&w=a"
+                />
               </div>
             </div>
           </div>
