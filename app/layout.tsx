@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -47,12 +46,16 @@ export default function RootLayout({
               <div className="text-center text-sm text-gray-500">
                 <p>© 2026 张昕个人主页</p>
               </div>
-              <div className="mt-4 w-48 h-32 overflow-hidden" id="clustrmaps-container">
-                <Script
-                  id="clustrmaps"
-                  strategy="lazyOnload"
-                  src="//clustrmaps.com/map_v2.js?d=7NKnjFd9sTzDrKdIaJlf34f2X7ZY_WSFuMH_AnY5BPA&cl=ffffff&w=a"
-                />
+              <div className="mt-4">
+                <a href="https://clustrmaps.com/site/1c99c" title="Visitor Map">
+                  <img 
+                    src="//www.clustrmaps.com/map_v2.png?d=7NKnjFd9sTzDrKdIaJlf34f2X7ZY_WSFuMH_AnY5BPA&cl=ffffff" 
+                    alt="Visitor Map"
+                    width="150"
+                    height="100"
+                    className="rounded"
+                  />
+                </a>
               </div>
             </div>
           </div>
