@@ -1,4 +1,5 @@
 import { AnimatedSection } from "./components/animations";
+import Guestbook from "./components/Guestbook";
 
 export default function Home() {
   return (
@@ -299,6 +300,19 @@ export default function Home() {
               </a>
             </div>
           </div>
+        </section>
+      </AnimatedSection>
+
+      {/* Guestbook Section */}
+      <AnimatedSection delay={100}>
+        <section id="guestbook" className="mb-8 scroll-mt-20">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-1 h-8 bg-[#c9a227] rounded-full"></div>
+            <h2 className="text-2xl font-serif font-bold text-[#1e3a5f]">
+              留言板
+            </h2>
+          </div>
+          <Guestbook />
         </section>
       </AnimatedSection>
     </div>

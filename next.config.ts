@@ -1,11 +1,9 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  output: 'export',
-  distDir: 'dist',
-  images: {
-    unoptimized: true,
+const nextConfig: any = {
+  reactStrictMode: true,
+  experimental: {
+    appDir: true,
+    serverActions: true,
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig
