@@ -21,8 +21,12 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="w-48 h-48 bg-gray-200 rounded-full flex items-center justify-center">
-            <span className="text-gray-400">照片</span>
+          <div className="w-48 h-48 rounded-full overflow-hidden">
+            <img 
+              src="/photo.jpg" 
+              alt="张昕" 
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </section>
