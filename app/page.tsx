@@ -196,9 +196,9 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="mt-4 bg-[#1e3a5f] rounded-lg shadow-md p-5 text-white hover:shadow-lg transition-all duration-300">
-            <h3 className="text-lg font-semibold mb-2 text-[#c9a227]">开发工具</h3>
-            <p className="text-gray-200 text-sm">
+          <div className="mt-4 bg-white rounded-lg shadow-md p-5 border border-[#e2e8f0] hover:border-[#c9a227] hover:shadow-lg transition-all duration-300 group">
+            <h3 className="text-lg font-semibold text-[#1e3a5f] mb-2 group-hover:text-[#c9a227] transition-colors">开发工具</h3>
+            <p className="text-[#475569] text-sm">
               熟悉Git版本控制、Makefile构建工具
             </p>
           </div>
