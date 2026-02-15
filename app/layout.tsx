@@ -46,16 +46,18 @@ export default function RootLayout({
               <div className="text-center text-sm text-gray-500">
                 <p>© 2026 张昕个人主页</p>
               </div>
-              <div className="mt-4">
-                <a href="https://clustrmaps.com/site/1c99c" title="Visitor Map">
+              <div className="mt-8 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h4 className="text-sm font-medium text-gray-700 mb-3 text-center">访客分布</h4>
+                <a href="https://clustrmaps.com/site/1c99c" title="查看详细访客统计">
                   <img 
                     src="//www.clustrmaps.com/map_v2.png?d=7NKnjFd9sTzDrKdIaJlf34f2X7ZY_WSFuMH_AnY5BPA&cl=ffffff" 
-                    alt="Visitor Map"
-                    width="150"
-                    height="100"
-                    className="rounded"
+                    alt="访客地理分布热图"
+                    width="220"
+                    height="150"
+                    className="rounded hover:opacity-90 transition-opacity"
                   />
                 </a>
+                <p className="text-xs text-gray-400 mt-2 text-center">点击地图查看详细统计</p>
               </div>
             </div>
           </div>
