@@ -38,3 +38,8 @@ export async function addGuestbookEntry(entry: GuestbookEntry): Promise<void> {
   entries.unshift(entry)
   await fs.promises.writeFile(filePath, JSON.stringify(entries, null, 2), 'utf8')
 }
+
+// Utility: reset guestbook data (for testing/local cleanup)
+export async function clearGuestbook(): Promise<void> {
+  await fs.promises.writeFile(filePath, '[]', 'utf8')
+}
