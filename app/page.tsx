@@ -1,5 +1,6 @@
 import { AnimatedSection } from "./components/animations";
 import Giscus from "./components/Giscus";
+import BlogPreview from "./components/BlogPreview";
 
 const GISCUS_CONFIG = {
   repo: "zhangxin-hiter/personal-website",
@@ -158,6 +159,12 @@ export default function Home() {
               </ul>
             </article>
           </div>
+        </section>
+      </AnimatedSection>
+
+      <AnimatedSection delay={100}>
+        <section className="mb-16 scroll-mt-20">
+          <BlogPreview />
         </section>
       </AnimatedSection>
 

@@ -12,12 +12,14 @@ export default function Navigation({ children }: { children: React.ReactNode }) 
         { href: "#projects", label: "Projects" },
         { href: "#skills", label: "Skills" },
         { href: "#contact", label: "Contact" },
+        { href: "/blog", label: "Blog", isPage: true },
       ]
     : [
         { href: "#education", label: "教育背景" },
         { href: "#projects", label: "项目经历" },
         { href: "#skills", label: "专业技能" },
         { href: "#contact", label: "联系方式" },
+        { href: "/blog", label: "博客", isPage: true },
       ];
 
   return (
@@ -31,7 +33,11 @@ export default function Navigation({ children }: { children: React.ReactNode }) 
             <div className="flex items-center gap-6">
               <div className="flex gap-6">
                 {navItems.map((item) => (
-                  <a key={item.href} href={item.href} className="text-sm text-gray-300 hover:text-[#c9a227] transition-colors hidden md:block">
+                  <a 
+                    key={item.href} 
+                    href={item.href} 
+                    className={`text-sm transition-colors hidden md:block ${item.isPage ? (pathname === item.href ? "text-[#c9a227]" : "text-gray-300 hover:text-[#c9a227]") : "text-gray-300 hover:text-[#c9a227]"}`}
+                  >
                     {item.label}
                   </a>
                 ))}
