@@ -1,5 +1,13 @@
 import { AnimatedSection } from "../components/animations";
 import BlogPreview from "../components/BlogPreview";
+import Giscus from "../components/Giscus";
+
+const GISCUS_CONFIG = {
+  repo: "zhangxin-hiter/personal-website",
+  repoId: "R_kgDORQsOIQ",
+  category: "Announcements",
+  categoryId: "DIC_kwDORQsOIc4C2fRb",
+};
 
 export default function Home() {
   return (
@@ -311,6 +319,18 @@ export default function Home() {
               </a>
             </div>
           </div>
+        </section>
+      </AnimatedSection>
+
+      <AnimatedSection delay={100}>
+        <section id="guestbook" className="mb-8 scroll-mt-20">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-1 h-8 bg-[#c9a227] rounded-full"></div>
+            <h2 className="text-2xl font-serif font-bold text-[#1e3a5f]">
+              Guestbook
+            </h2>
+          </div>
+          <Giscus {...GISCUS_CONFIG} />
         </section>
       </AnimatedSection>
     </div>
