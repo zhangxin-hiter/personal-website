@@ -1,5 +1,12 @@
 import { AnimatedSection } from "./components/animations";
-import Guestbook from "./components/Guestbook";
+import Giscus from "./components/Giscus";
+
+const GISCUS_CONFIG = {
+  repo: "zhangxin-hiter/personal-website",
+  repoId: "R_kgDORQsOIQ",
+  category: "Announcements",
+  categoryId: "DIC_kwDORQsOIc4C2fRb",
+};
 
 export default function Home() {
   return (
@@ -312,7 +319,7 @@ export default function Home() {
               留言板
             </h2>
           </div>
-          <Guestbook />
+          <Giscus {...GISCUS_CONFIG} />
         </section>
       </AnimatedSection>
     </div>
