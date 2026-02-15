@@ -186,4 +186,44 @@ export default function Home() {
           </div>
 
           <div>
-           
+            <h3 className="text-base font-semibold text-gray-900 mb-3">联系方式</h3>
+            <div className="space-y-2 text-sm text-gray-600">
+              <p>
+                <span className="inline-block w-12">邮箱:</span>
+                <a href="mailto:zx2567617517@foxmail.com" className="text-blue-600 hover:underline">
+                  zx2567617517@foxmail.com
+                </a>
+              </p>
+              <p>
+                <span className="inline-block w-12">电话:</span>
+                (+86) 188-7061-9179
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6">
+          <h3 className="text-base font-semibold text-gray-900 mb-3">个人链接</h3>
+          <div className="flex gap-4 text-sm">
+            <a
+              href="https://zhangxin-hiter.github.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              个人主页
+            </a>
+            <a
+              href="https://github.com/zhangxin-hiter"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
