@@ -1,6 +1,8 @@
 import { getAllPosts, getPostBySlug, markdownToHtml, getAdjacentPosts } from '../../lib/blog';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import Giscus from '../../components/Giscus';
+import { GISCUS_CONFIG } from '../../lib/config';
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -131,6 +133,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           )}
         </div>
       </nav>
+
+      <section className="mt-12">
+        <Giscus {...GISCUS_CONFIG} />
+      </section>
     </div>
   );
 }
