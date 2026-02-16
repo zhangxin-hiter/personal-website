@@ -4,6 +4,7 @@ import Fireworks from "./components/Fireworks";
 import BackToTop from "./components/BackToTop";
 import { ThemeProvider } from "./components/ThemeProvider";
 import "./globals.css";
+import "katex/dist/katex.min.css";
 
 export const metadata: Metadata = {
   title: "张昕 - 个人主页",
