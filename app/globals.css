@@ -338,3 +338,53 @@ pre code {
 .dark .hljs-comment {
   color: #8b949e;
 }
+
+/* Table Styles */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  background: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.prose table thead {
+  background: var(--primary);
+  color: white;
+}
+
+.prose table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid var(--accent);
+}
+
+.prose table td {
+  padding: 0.625rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.prose table tbody tr:hover {
+  background: var(--section-bg);
+}
+
+.prose table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.dark .prose table {
+  background: var(--card-bg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dark .prose table thead {
+  background: var(--primary);
+}
+
+.dark .prose table td {
+  border-color: var(--border);
+}
