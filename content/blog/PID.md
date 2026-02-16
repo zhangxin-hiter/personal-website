@@ -1,0 +1,125 @@
+---
+title: "PID控制算法"
+date: "2025-05-29"
+description: "PID控制算法详解 - 从基础到优化的完整实现"
+tags: ["控制算法"]
+---
+
+# PID控制算法
+
+## 简介
+
+PID算法（比例-积分-微分控制）是一种经典的控制算法，在工业控制领域应用十分广泛，例如温度控制，飞行器控制等等。
+
+## PID控制器的基本结构
+
+PID控制器由三部分组成
+
+$$
+u(t) = K_p \cdot e(t) + K_i \cdot \int_0^t e(\tau) d\tau + K_d \cdot \frac{de(t)}{dt}
+$$
+
+其中：
+- $u(t)$：控制器的输出
+- $e(t) = r(t) - y(t)$：误差，设定值$r(t)$减去系统实际值$y(t)$
+- $K_p$：比例系数
+- $K_i$：积分系数
+- $K_d$：微分系数
+
+## 各部分作用
+
+| 组成 | 作用 | 效果 |
+|------|------|------|
+| 比例P | 当前误差响应 | 增大反应速度，但可能造成震荡 |
+| 积分I | 累计误差消除稳态误差 | 减小长期误差，但可能会造成超调 |
+| 微分D | 预测未来误差 | 减小超调，提高系统稳定性 |
+
+## 离散形式（适合编程实现）
+
+假设控制周期为$\Delta t$，第k个时刻的误差为$e_k$，则离散PID表达式为
+
+$$
+u_k = K_p \cdot e_k + K_i \cdot \sum_{i=0}^{k} e_i \cdot \Delta t + K_d \cdot \frac{e_k - e_{k-1}}{\Delta t}
+$$
+
+## 实现示例
+
+### 1. 创建PID控制器结构体
+```c
+typedef struct Class_PID
+{
+    float D_T;      //计时周期
+
+    float Pre_Error;        //之前的误差项        
+    float Pre_Target;       //之前的目标项
+    float Pre_Now;          //之前的当前项
+
+    float K_p;      //比例系数
+    float K_i;      //积分系数
+    float K_d;      //微分系数
+
+    float Target;       //目标值
+    float Now;          //当前值
+
+    float Integral_Error;       //累计误差
+
+    float Output;       //pid输出值
+}Class_PID, *pClass_PID;
+```
+
+### 2. PID更新函数
+```c
+void TIM_Adjust_PIDElapsedCallback(pClass_PID this)
+{
+    //比例项输出
+    float p_out = 0.0f;
+    //积分项输出
+    float i_out = 0.0f;
+    //微分项输出
+    float d_out = 0.0f;
+    //误差
+    float error = 0.0f;
+    //更新误差值
+    error = this->Target - this->Now;
+    //计算比例项输出
+    p_out = this->K_p * error;
+    //更新误差积分
+    this->Integral_Error += error;
+    //计算积分项输出
+    i_out = this->D_T * this->K_i * this->Integral_Error;
+    //计算微分项输出
+    d_out = this->K_d * (error - this->Pre_Error) / this->D_T;
+
+    this->Output = p_out + i_out + d_out;
+
+    //收尾工作
+    this->Pre_Error = error;
+    this->Pre_Target = this->Target;
+    this->Pre_Now = this->Now;
+}
+```
+
+## 优化算法
+
+### 1. 死区(Dead Zone)
+当误差$|e(t)| < \delta$时，认为误差太小，不进行输出，避免过度调节
+
+可以抑制微小误差导致的高频振荡或电机抖动
+
+### 2. 输出限幅
+防止误差过大时的爆冲
+
+### 3. 积分限幅
+避免由于误差过大而导致的震荡和超调
+
+### 4. 积分分离
+积分限幅可以避免由于误差过大而导致的震荡和超调
+
+### 5. 变速积分
+误差小时允许积分作用强消除稳态误差，误差大时减弱甚至不积分（避免震荡）
+
+### 6. 微分先行
+当目标值突然变化时，微分项会剧烈跳变，出现尖峰，而微分先行只对反馈值微分，避免尖峰
+
+### 7. 前馈
+提高反应速度

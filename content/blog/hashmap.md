@@ -1,0 +1,99 @@
+---
+title: "hashmap"
+date: "2025-05-12"
+description: "哈希表数据结构详解 - uthash库的使用方法"
+tags: ["hot100"]
+---
+
+# hashmap
+
+哈希表是一种数组和哈希函数实现的键值对存储数据结构，它可以在平均情况下以非常快的速度O(1)进行插入，删除和查找操作。
+
+由于c标准库没有直接提供哈希表的api，我们需要使用第三方库，以uthash为例
+
+## 定义哈希的结构体
+```c
+typedef struct
+{
+    int key;    //id
+    int cnt;    //哈希键
+    UT_hash_handle hh;
+}hashitem;
+```
+
+## 定义哈希的入口
+```c
+hashitem* table = NULL;         //初始必须为零
+```
+
+## 插入函数api
+```c
+HASH_ADD_STR(table, key, tmp);          //以key作为id
+```
+
+## 查找函数api
+```c
+HASH_FIND_STR(table, &num, tmp);         
+```
+
+## 删除整个哈希表函数api
+```c
+HASH_DEL(hh, head);
+```
+
+## 删除元素函数api
+```c
+HASH_DELETE(hh, head，tmp);
+```
+
+## 遍历函数
+```c
+HASH_ITER(hh, table, current, tmp)
+```
+
+> 给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数 。
+子数组是数组中元素的连续非空序列。
+
+```c
+#include <uthash.h>
+
+typedef struct hashmap
+{
+    int presum;
+    int cnt;
+    UT_hash_handle hh;
+}hashmap;
+
+int subarraySum(int* nums, int numsSize, int k) {
+    hashmap* hashset = NULL;
+    hashmap* tmp =  (hashmap *)malloc(sizeof(hashmap));
+    int pre = 0;
+    int retcnt = 0;
+    tmp->presum = 0;
+    tmp->cnt = 1;
+    HASH_ADD_INT(hashset, presum, tmp);
+    for (int i = 0; i < numsSize; i++)
+    {
+        pre += nums[i];
+        int value = pre - k;
+        HASH_FIND_INT(hashset, &value, tmp);
+        if (tmp != NULL)
+        {
+            retcnt += tmp->cnt;
+        }
+        HASH_FIND_INT(hashset, &pre, tmp);
+        if (tmp != NULL)
+        {
+            tmp->cnt++;
+        }
+        else
+        {
+            tmp = (hashmap *)malloc(sizeof(hashmap));
+            tmp->presum = pre;
+            tmp->cnt = 1;
+            HASH_ADD_INT(hashset, presum, tmp);
+        }
+    }
+    return retcnt;
+}
+```
