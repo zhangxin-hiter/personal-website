@@ -151,6 +151,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Typing Cursor Blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor {
+  animation: blink 1s step-end infinite;
+  font-weight: 100;
+  margin-left: 1px;
+  color: var(--accent);
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -3,6 +3,7 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Fireworks from "./components/Fireworks";
 import BackToTop from "./components/BackToTop";
+import ScrollProgress from "./components/ScrollProgress";
 import { ThemeProvider } from "./components/ThemeProvider";
 import "./globals.css";
 import "katex/dist/katex.min.css";
@@ -50,6 +51,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <ThemeProvider>
+          <ScrollProgress />
           <Fireworks />
           <Nav />
           <main className="min-h-screen">

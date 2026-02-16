@@ -4,6 +4,11 @@ import Giscus from "../components/Giscus";
 import type { Metadata } from "next";
 import { GISCUS_CONFIG } from "../lib/config";
 import Image from "next/image";
+import ParticleBackground from "../components/ParticleBackground";
+import TypingEffect from "../components/TypingEffect";
+import AnimatedCounter from "../components/AnimatedCounter";
+import TiltCard from "../components/TiltCard";
+import GlowCard from "../components/GlowCard";
 
 export const metadata: Metadata = {
   title: "Xin Zhang - Personal Website",
@@ -34,31 +39,34 @@ export default function Home() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
       {/* Hero Section */}
-      <section className="mb-16 animate-fade-in-up">
-        <div className="flex flex-col md:flex-row gap-8 items-start">
+      <section className="mb-16 animate-fade-in-up relative">
+        <ParticleBackground />
+        <div className="flex flex-col md:flex-row gap-8 items-start relative z-10">
           <div className="flex-1">
             <h1 className="text-5xl font-serif font-bold text-[var(--primary)] mb-4 hover-scale inline-block">
               Xin Zhang
             </h1>
             <h2 className="text-xl text-[var(--text-secondary)] mb-6 animate-fade-in delay-200 font-medium">
-              Telecommunications Engineering · Undergraduate · Harbin Institute of Technology (Shenzhen)
+              <TypingEffect
+                words={["Embedded Systems Developer", "Telecom Engineering Student", "Hardware Design Enthusiast"]}
+              />
             </h2>
             <div className="prose max-w-none text-[var(--foreground)] leading-relaxed animate-fade-in delay-300">
               <p className="mb-4">
-                I am an undergraduate student majoring in Telecommunications Engineering at Harbin Institute of Technology (Shenzhen), 
-                with a GPA of 88.587/100 (Top 18.75%, 45/240). I am passionate about embedded systems development and intelligent hardware design, 
+                I am an undergraduate student majoring in Telecommunications Engineering at Harbin Institute of Technology (Shenzhen),
+                with a GPA of 88.587/100 (Top 18.75%, 45/240). I am passionate about embedded systems development and intelligent hardware design,
                 with extensive project experience in microcontroller development, sensor applications, and wireless communication.
               </p>
               <p>
-                I have received multiple honors including First Prize in the National College Mathematics Competition and Academic Scholarships. 
-                I am proficient in C and Python programming, familiar with STM32 and MSP series microcontroller development, 
+                I have received multiple honors including First Prize in the National College Mathematics Competition and Academic Scholarships.
+                I am proficient in C and Python programming, familiar with STM32 and MSP series microcontroller development,
                 and possess solid hardware design and software development capabilities.
               </p>
             </div>
           </div>
           <div className="w-48 h-48 rounded-full overflow-hidden hover-scale animate-scale-in delay-200 shadow-xl ring-4 ring-[var(--accent)] ring-offset-4 relative">
-            <Image 
-              src="/photo.jpg" 
+            <Image
+              src="/photo.jpg"
               alt="Xin Zhang"
               fill
               className="object-cover transition-transform duration-500 hover:scale-110"
@@ -89,9 +97,11 @@ export default function Home() {
             </div>
             <div className="mt-4 pt-4 border-t border-[var(--border)]">
               <p className="text-[var(--text-secondary)]">
-                <span className="font-semibold text-[var(--primary)]">GPA:</span> 88.587/100
+                <span className="font-semibold text-[var(--primary)]">GPA:</span>{" "}
+                <AnimatedCounter target={88.587} decimals={3} className="font-bold text-[var(--accent)]" />/100
                 <span className="mx-2 text-[var(--accent)]">•</span>
-                <span className="font-semibold text-[var(--primary)]">Rank:</span> 45/240 (Top 18.75%)
+                <span className="font-semibold text-[var(--primary)]">Rank:</span>{" "}
+                <AnimatedCounter target={45} decimals={0} className="font-bold text-[var(--accent)]" />/240 (Top 18.75%)
               </p>
             </div>
           </div>
@@ -148,81 +158,87 @@ export default function Home() {
             </h2>
           </div>
           <div className="space-y-6">
-            <article className="bg-[var(--card-bg)] rounded-lg shadow-md border-l-4 border-[var(--accent)] p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="text-lg font-semibold text-[var(--primary)]">
-                  Huada Jiutian Cup Shenzhen Electronic Design Invitational · Vision-Guided Smart Car
-                </h3>
-                <span className="text-sm text-[var(--text-muted)] bg-[var(--section-bg)] px-3 py-1 rounded-full whitespace-nowrap ml-4">Apr 2025</span>
-              </div>
-              <p className="text-sm text-[var(--accent)] font-medium mb-3">Team Member</p>
-              <ul className="text-[var(--text-secondary)] space-y-2">
-                <li className="flex items-start">
-                  <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
-                  <span>Implemented lane following using camera-based red line detection and neural network-based road sign recognition</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
-                  <span>Enabled the car to perform actions such as parking, turning left/right based on identified signs</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
-                  <span>Responsible for data transmission between K230 vision module and MSPM0G3507 MCU</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
-                  <span>Implemented ADC buttons, buzzer, and wireless communication between car and host computer</span>
-                </li>
-              </ul>
-            </article>
+            <TiltCard className="rounded-lg">
+              <article className="bg-[var(--card-bg)] rounded-lg shadow-md border-l-4 border-[var(--accent)] p-6">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-lg font-semibold text-[var(--primary)]">
+                    Huada Jiutian Cup Shenzhen Electronic Design Invitational · Vision-Guided Smart Car
+                  </h3>
+                  <span className="text-sm text-[var(--text-muted)] bg-[var(--section-bg)] px-3 py-1 rounded-full whitespace-nowrap ml-4">Apr 2025</span>
+                </div>
+                <p className="text-sm text-[var(--accent)] font-medium mb-3">Team Member</p>
+                <ul className="text-[var(--text-secondary)] space-y-2">
+                  <li className="flex items-start">
+                    <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
+                    <span>Implemented lane following using camera-based red line detection and neural network-based road sign recognition</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
+                    <span>Enabled the car to perform actions such as parking, turning left/right based on identified signs</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
+                    <span>Responsible for data transmission between K230 vision module and MSPM0G3507 MCU</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
+                    <span>Implemented ADC buttons, buzzer, and wireless communication between car and host computer</span>
+                  </li>
+                </ul>
+              </article>
+            </TiltCard>
 
-            <article className="bg-[var(--card-bg)] rounded-lg shadow-md border-l-4 border-[var(--primary)] p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="text-lg font-semibold text-[var(--primary)]">
-                  Personal Project · Bluetooth Obstacle-Avoidance Smart Car
-                </h3>
-                <span className="text-sm text-[var(--text-muted)] bg-[var(--section-bg)] px-3 py-1 rounded-full whitespace-nowrap ml-4">Jan 2025</span>
-              </div>
-              <p className="text-sm text-[var(--success)] font-medium mb-3">Project Lead</p>
-              <ul className="text-[var(--text-secondary)] space-y-2">
-                <li className="flex items-start">
-                  <span className="text-[var(--primary)] mr-2 mt-1.5">◆</span>
-                  <span>Implemented automatic obstacle avoidance and distance feedback via Bluetooth to mobile phone</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[var(--primary)] mr-2 mt-1.5">◆</span>
-                  <span>Used STM32F103C8T6 as main controller, generating dual PWM signals via timer output compare to control motors</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[var(--primary)] mr-2 mt-1.5">◆</span>
-                  <span>Bluetooth module communicated with MCU via UART; ultrasonic sensors measured obstacle distances to control motion logic</span>
-                </li>
-              </ul>
-            </article>
+            <TiltCard className="rounded-lg">
+              <article className="bg-[var(--card-bg)] rounded-lg shadow-md border-l-4 border-[var(--primary)] p-6">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-lg font-semibold text-[var(--primary)]">
+                    Personal Project · Bluetooth Obstacle-Avoidance Smart Car
+                  </h3>
+                  <span className="text-sm text-[var(--text-muted)] bg-[var(--section-bg)] px-3 py-1 rounded-full whitespace-nowrap ml-4">Jan 2025</span>
+                </div>
+                <p className="text-sm text-[var(--success)] font-medium mb-3">Project Lead</p>
+                <ul className="text-[var(--text-secondary)] space-y-2">
+                  <li className="flex items-start">
+                    <span className="text-[var(--primary)] mr-2 mt-1.5">◆</span>
+                    <span>Implemented automatic obstacle avoidance and distance feedback via Bluetooth to mobile phone</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[var(--primary)] mr-2 mt-1.5">◆</span>
+                    <span>Used STM32F103C8T6 as main controller, generating dual PWM signals via timer output compare to control motors</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[var(--primary)] mr-2 mt-1.5">◆</span>
+                    <span>Bluetooth module communicated with MCU via UART; ultrasonic sensors measured obstacle distances to control motion logic</span>
+                  </li>
+                </ul>
+              </article>
+            </TiltCard>
 
-            <article className="bg-[var(--card-bg)] rounded-lg shadow-md border-l-4 border-[var(--text-muted)] p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="text-lg font-semibold text-[var(--primary)]">
-                  2024 National Electronic Design Contest Problem H (Practice) · Infrared Line-Following Car
-                </h3>
-                <span className="text-sm text-[var(--text-muted)] bg-[var(--section-bg)] px-3 py-1 rounded-full whitespace-nowrap ml-4">Jan 2025</span>
-              </div>
-              <p className="text-sm text-[var(--text-muted)] font-medium mb-3">Team Member</p>
-              <ul className="text-[var(--text-secondary)] space-y-2">
-                <li className="flex items-start">
-                  <span className="text-[var(--text-muted)] mr-2 mt-1.5">◆</span>
-                  <span>Implemented line following along specified routes</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[var(--text-muted)] mr-2 mt-1.5">◆</span>
-                  <span>Responsible for MPU6050 6-axis sensor using I2C communication protocol</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[var(--text-muted)] mr-2 mt-1.5">◆</span>
-                  <span>Implemented communication between sensor and MSPM0 MCU; obtained car orientation angles through sensor fusion</span>
-                </li>
-              </ul>
-            </article>
+            <TiltCard className="rounded-lg">
+              <article className="bg-[var(--card-bg)] rounded-lg shadow-md border-l-4 border-[var(--text-muted)] p-6">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-lg font-semibold text-[var(--primary)]">
+                    2024 National Electronic Design Contest Problem H (Practice) · Infrared Line-Following Car
+                  </h3>
+                  <span className="text-sm text-[var(--text-muted)] bg-[var(--section-bg)] px-3 py-1 rounded-full whitespace-nowrap ml-4">Jan 2025</span>
+                </div>
+                <p className="text-sm text-[var(--text-muted)] font-medium mb-3">Team Member</p>
+                <ul className="text-[var(--text-secondary)] space-y-2">
+                  <li className="flex items-start">
+                    <span className="text-[var(--text-muted)] mr-2 mt-1.5">◆</span>
+                    <span>Implemented line following along specified routes</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[var(--text-muted)] mr-2 mt-1.5">◆</span>
+                    <span>Responsible for MPU6050 6-axis sensor using I2C communication protocol</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[var(--text-muted)] mr-2 mt-1.5">◆</span>
+                    <span>Implemented communication between sensor and MSPM0 MCU; obtained car orientation angles through sensor fusion</span>
+                  </li>
+                </ul>
+              </article>
+            </TiltCard>
           </div>
         </section>
       </AnimatedSection>
@@ -243,36 +259,38 @@ export default function Home() {
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="bg-[var(--card-bg)] rounded-lg shadow-md p-5 border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300 group">
-              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2 group-hover:text-[var(--accent)] transition-colors">Programming Languages</h3>
+            <GlowCard>
+              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2">Programming Languages</h3>
               <p className="text-[var(--text-secondary)] text-sm">
                 Proficient in C; competent in Python
               </p>
-            </div>
-            <div className="bg-[var(--card-bg)] rounded-lg shadow-md p-5 border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300 group">
-              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2 group-hover:text-[var(--accent)] transition-colors">Embedded Development</h3>
+            </GlowCard>
+            <GlowCard>
+              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2">Embedded Development</h3>
               <p className="text-[var(--text-secondary)] text-sm">
                 Familiar with STM32 and MSP series MCUs; proficient in I2C, UART, SPI protocols
               </p>
-            </div>
-            <div className="bg-[var(--card-bg)] rounded-lg shadow-md p-5 border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300 group">
-              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2 group-hover:text-[var(--accent)] transition-colors">Operating Systems</h3>
+            </GlowCard>
+            <GlowCard>
+              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2">Operating Systems</h3>
               <p className="text-[var(--text-secondary)] text-sm">
                 Familiar with RTOS; basic knowledge of Linux application development
               </p>
-            </div>
-            <div className="bg-[var(--card-bg)] rounded-lg shadow-md p-5 border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300 group">
-              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2 group-hover:text-[var(--accent)] transition-colors">EDA Tools</h3>
+            </GlowCard>
+            <GlowCard>
+              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2">EDA Tools</h3>
               <p className="text-[var(--text-secondary)] text-sm">
                 Familiar with Multisim, Cadence, Virtuoso, Altium Designer
               </p>
-            </div>
+            </GlowCard>
           </div>
-          <div className="mt-4 bg-[var(--card-bg)] rounded-lg shadow-md p-5 border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300 group">
-            <h3 className="text-lg font-semibold text-[var(--primary)] mb-2 group-hover:text-[var(--accent)] transition-colors">Development Tools</h3>
-            <p className="text-[var(--text-secondary)] text-sm">
-              Git version control, Makefile build system
-            </p>
+          <div className="mt-4">
+            <GlowCard>
+              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2">Development Tools</h3>
+              <p className="text-[var(--text-secondary)] text-sm">
+                Git version control, Makefile build system
+              </p>
+            </GlowCard>
           </div>
         </section>
       </AnimatedSection>

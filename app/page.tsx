@@ -3,19 +3,27 @@ import Giscus from "./components/Giscus";
 import BlogPreview from "./components/BlogPreview";
 import { GISCUS_CONFIG } from "./lib/config";
 import Image from "next/image";
+import ParticleBackground from "./components/ParticleBackground";
+import TypingEffect from "./components/TypingEffect";
+import AnimatedCounter from "./components/AnimatedCounter";
+import TiltCard from "./components/TiltCard";
+import GlowCard from "./components/GlowCard";
 
 export default function Home() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
       {/* Hero Section */}
-      <section className="mb-16 animate-fade-in-up">
-        <div className="flex flex-col md:flex-row gap-8 items-start">
+      <section className="mb-16 animate-fade-in-up relative">
+        <ParticleBackground />
+        <div className="flex flex-col md:flex-row gap-8 items-start relative z-10">
           <div className="flex-1">
             <h1 className="text-5xl font-serif font-bold text-[var(--primary)] mb-4 hover-scale inline-block">
               张昕
             </h1>
             <h2 className="text-xl text-[var(--text-secondary)] mb-6 animate-fade-in delay-200 font-medium">
-              通信工程 · 本科在读 · 哈尔滨工业大学(深圳)
+              <TypingEffect
+                words={["嵌入式开发工程师", "通信工程学生", "硬件设计爱好者"]}
+              />
             </h2>
             <div className="prose max-w-none text-[var(--foreground)] leading-relaxed animate-fade-in delay-300 text-justify">
               <p className="mb-4">
@@ -29,8 +37,8 @@ export default function Home() {
             </div>
           </div>
           <div className="w-48 h-48 rounded-full overflow-hidden hover-scale animate-scale-in delay-200 shadow-xl ring-4 ring-[var(--accent)] ring-offset-4 relative">
-            <Image 
-              src="/photo.jpg" 
+            <Image
+              src="/photo.jpg"
               alt="张昕"
               fill
               className="object-cover transition-transform duration-500 hover:scale-110"
@@ -61,9 +69,11 @@ export default function Home() {
             </div>
             <div className="mt-4 pt-4 border-t border-[var(--border)]">
               <p className="text-[var(--text-secondary)]">
-                <span className="font-semibold text-[var(--primary)]">GPA:</span> 88.587/100
+                <span className="font-semibold text-[var(--primary)]">GPA:</span>{" "}
+                <AnimatedCounter target={88.587} decimals={3} className="font-bold text-[var(--accent)]" />/100
                 <span className="mx-2 text-[var(--accent)]">•</span>
-                <span className="font-semibold text-[var(--primary)]">排名:</span> 45/240 (前18.75%)
+                <span className="font-semibold text-[var(--primary)]">排名:</span>{" "}
+                <AnimatedCounter target={45} decimals={0} className="font-bold text-[var(--accent)]" />/240 (前18.75%)
               </p>
             </div>
           </div>
@@ -120,81 +130,87 @@ export default function Home() {
             </h2>
           </div>
           <div className="space-y-6">
-            <article className="bg-[var(--card-bg)] rounded-lg shadow-md border-l-4 border-[var(--accent)] p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="text-lg font-semibold text-[var(--primary)]">
-                  华大九天杯深圳市电子设计邀请赛 · 视觉导航智能小车
-                </h3>
-                <span className="text-sm text-[var(--text-muted)] bg-[var(--section-bg)] px-3 py-1 rounded-full whitespace-nowrap ml-4">2025.04</span>
-              </div>
-              <p className="text-sm text-[var(--accent)] font-medium mb-3">项目成员</p>
-              <ul className="text-[var(--text-secondary)] space-y-2">
-                <li className="flex items-start">
-                  <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
-                  <span>小车通过摄像头识别道路红线，完成道路寻线，并利用神经网络识别道路标识</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
-                  <span>根据标识完成停车、左转右转等动作</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
-                  <span>负责视觉模块K230与主控芯片MSPM0G3507板间通信数据传输</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
-                  <span>负责ADC按键、蜂鸣器、小车与上位机无线通信部分</span>
-                </li>
-              </ul>
-            </article>
+            <TiltCard className="rounded-lg">
+              <article className="bg-[var(--card-bg)] rounded-lg shadow-md border-l-4 border-[var(--accent)] p-6">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-lg font-semibold text-[var(--primary)]">
+                    华大九天杯深圳市电子设计邀请赛 · 视觉导航智能小车
+                  </h3>
+                  <span className="text-sm text-[var(--text-muted)] bg-[var(--section-bg)] px-3 py-1 rounded-full whitespace-nowrap ml-4">2025.04</span>
+                </div>
+                <p className="text-sm text-[var(--accent)] font-medium mb-3">项目成员</p>
+                <ul className="text-[var(--text-secondary)] space-y-2">
+                  <li className="flex items-start">
+                    <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
+                    <span>小车通过摄像头识别道路红线，完成道路寻线，并利用神经网络识别道路标识</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
+                    <span>根据标识完成停车、左转右转等动作</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
+                    <span>负责视觉模块K230与主控芯片MSPM0G3507板间通信数据传输</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[var(--accent)] mr-2 mt-1.5">◆</span>
+                    <span>负责ADC按键、蜂鸣器、小车与上位机无线通信部分</span>
+                  </li>
+                </ul>
+              </article>
+            </TiltCard>
 
-            <article className="bg-[var(--card-bg)] rounded-lg shadow-md border-l-4 border-[var(--primary)] p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="text-lg font-semibold text-[var(--primary)]">
-                  个人项目 · 智能蓝牙避障小车
-                </h3>
-                <span className="text-sm text-[var(--text-muted)] bg-[var(--section-bg)] px-3 py-1 rounded-full whitespace-nowrap ml-4">2025.01</span>
-              </div>
-              <p className="text-sm text-[var(--success)] font-medium mb-3">项目负责人</p>
-              <ul className="text-[var(--text-secondary)] space-y-2">
-                <li className="flex items-start">
-                  <span className="text-[var(--primary)] mr-2 mt-1.5">◆</span>
-                  <span>实现小车自动避障功能，并通过蓝牙返回到障碍物的距离</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[var(--primary)] mr-2 mt-1.5">◆</span>
-                  <span>主控芯片STM32F103C8T6，通过定时器输出两路PWM控制电机</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[var(--primary)] mr-2 mt-1.5">◆</span>
-                  <span>蓝牙模块通过串口与主控通信，超声波测量障碍物距离并控制运动逻辑</span>
-                </li>
-              </ul>
-            </article>
+            <TiltCard className="rounded-lg">
+              <article className="bg-[var(--card-bg)] rounded-lg shadow-md border-l-4 border-[var(--primary)] p-6">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-lg font-semibold text-[var(--primary)]">
+                    个人项目 · 智能蓝牙避障小车
+                  </h3>
+                  <span className="text-sm text-[var(--text-muted)] bg-[var(--section-bg)] px-3 py-1 rounded-full whitespace-nowrap ml-4">2025.01</span>
+                </div>
+                <p className="text-sm text-[var(--success)] font-medium mb-3">项目负责人</p>
+                <ul className="text-[var(--text-secondary)] space-y-2">
+                  <li className="flex items-start">
+                    <span className="text-[var(--primary)] mr-2 mt-1.5">◆</span>
+                    <span>实现小车自动避障功能，并通过蓝牙返回到障碍物的距离</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[var(--primary)] mr-2 mt-1.5">◆</span>
+                    <span>主控芯片STM32F103C8T6，通过定时器输出两路PWM控制电机</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[var(--primary)] mr-2 mt-1.5">◆</span>
+                    <span>蓝牙模块通过串口与主控通信，超声波测量障碍物距离并控制运动逻辑</span>
+                  </li>
+                </ul>
+              </article>
+            </TiltCard>
 
-            <article className="bg-[var(--card-bg)] rounded-lg shadow-md border-l-4 border-[var(--text-muted)] p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="text-lg font-semibold text-[var(--primary)]">
-                  2024全国电子设计大赛H题（练习）· 红外巡线小车
-                </h3>
-                <span className="text-sm text-[var(--text-muted)] bg-[var(--section-bg)] px-3 py-1 rounded-full whitespace-nowrap ml-4">2025.01</span>
-              </div>
-              <p className="text-sm text-[var(--text-muted)] font-medium mb-3">项目成员</p>
-              <ul className="text-[var(--text-secondary)] space-y-2">
-                <li className="flex items-start">
-                  <span className="text-[var(--text-muted)] mr-2 mt-1.5">◆</span>
-                  <span>实现小车按指定路线寻线</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[var(--text-muted)] mr-2 mt-1.5">◆</span>
-                  <span>负责MPU6050六轴传感器部分，采用I2C通信协议</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[var(--text-muted)] mr-2 mt-1.5">◆</span>
-                  <span>实现传感器与主控芯片MSPM0通信，通过数据融合获得小车姿态角</span>
-                </li>
-              </ul>
-            </article>
+            <TiltCard className="rounded-lg">
+              <article className="bg-[var(--card-bg)] rounded-lg shadow-md border-l-4 border-[var(--text-muted)] p-6">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-lg font-semibold text-[var(--primary)]">
+                    2024全国电子设计大赛H题（练习）· 红外巡线小车
+                  </h3>
+                  <span className="text-sm text-[var(--text-muted)] bg-[var(--section-bg)] px-3 py-1 rounded-full whitespace-nowrap ml-4">2025.01</span>
+                </div>
+                <p className="text-sm text-[var(--text-muted)] font-medium mb-3">项目成员</p>
+                <ul className="text-[var(--text-secondary)] space-y-2">
+                  <li className="flex items-start">
+                    <span className="text-[var(--text-muted)] mr-2 mt-1.5">◆</span>
+                    <span>实现小车按指定路线寻线</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[var(--text-muted)] mr-2 mt-1.5">◆</span>
+                    <span>负责MPU6050六轴传感器部分，采用I2C通信协议</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-[var(--text-muted)] mr-2 mt-1.5">◆</span>
+                    <span>实现传感器与主控芯片MSPM0通信，通过数据融合获得小车姿态角</span>
+                  </li>
+                </ul>
+              </article>
+            </TiltCard>
           </div>
         </section>
       </AnimatedSection>
@@ -215,36 +231,38 @@ export default function Home() {
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="bg-[var(--card-bg)] rounded-lg shadow-md p-5 border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300 group">
-              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2 group-hover:text-[var(--accent)] transition-colors">编程语言</h3>
+            <GlowCard>
+              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2">编程语言</h3>
               <p className="text-[var(--text-secondary)] text-sm">
                 熟练使用C语言，能够使用Python编程
               </p>
-            </div>
-            <div className="bg-[var(--card-bg)] rounded-lg shadow-md p-5 border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300 group">
-              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2 group-hover:text-[var(--accent)] transition-colors">嵌入式开发</h3>
+            </GlowCard>
+            <GlowCard>
+              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2">嵌入式开发</h3>
               <p className="text-[var(--text-secondary)] text-sm">
                 熟悉STM32、MSP系列单片机开发，熟悉I2C、UART、SPI等通信协议
               </p>
-            </div>
-            <div className="bg-[var(--card-bg)] rounded-lg shadow-md p-5 border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300 group">
-              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2 group-hover:text-[var(--accent)] transition-colors">操作系统</h3>
+            </GlowCard>
+            <GlowCard>
+              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2">操作系统</h3>
               <p className="text-[var(--text-secondary)] text-sm">
                 熟悉RTOS，了解Linux应用开发
               </p>
-            </div>
-            <div className="bg-[var(--card-bg)] rounded-lg shadow-md p-5 border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300 group">
-              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2 group-hover:text-[var(--accent)] transition-colors">EDA工具</h3>
+            </GlowCard>
+            <GlowCard>
+              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2">EDA工具</h3>
               <p className="text-[var(--text-secondary)] text-sm">
                 熟悉Multisim、Cadence、Virtuoso、AD等EDA软件
               </p>
-            </div>
+            </GlowCard>
           </div>
-          <div className="mt-4 bg-[var(--card-bg)] rounded-lg shadow-md p-5 border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300 group">
-            <h3 className="text-lg font-semibold text-[var(--primary)] mb-2 group-hover:text-[var(--accent)] transition-colors">开发工具</h3>
-            <p className="text-[var(--text-secondary)] text-sm">
-              熟悉Git版本控制、Makefile构建工具
-            </p>
+          <div className="mt-4">
+            <GlowCard>
+              <h3 className="text-lg font-semibold text-[var(--primary)] mb-2">开发工具</h3>
+              <p className="text-[var(--text-secondary)] text-sm">
+                熟悉Git版本控制、Makefile构建工具
+              </p>
+            </GlowCard>
           </div>
         </section>
       </AnimatedSection>
