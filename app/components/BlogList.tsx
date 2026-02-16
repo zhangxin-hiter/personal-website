@@ -67,7 +67,7 @@ export default function BlogList({ posts }: BlogListProps) {
         {filteredPosts.map((post) => (
           <Link
             key={post.slug}
-            href={`/blog/${post.slug}`}
+            href={`/blog/${encodeURIComponent(post.slug)}`}
             className="block bg-[var(--card-bg)] rounded-lg shadow-md border border-[var(--border)] p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
           >
             <div className="flex justify-between items-start mb-2">

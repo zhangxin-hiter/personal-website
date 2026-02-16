@@ -104,7 +104,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         <div className="flex justify-between items-center">
           {adjacentPosts.next ? (
             <Link
-              href={`/blog/${adjacentPosts.next.slug}`}
+              href={`/blog/${encodeURIComponent(adjacentPosts.next.slug)}`}
               className="flex-1 group"
             >
               <span className="text-sm text-[#64748b] mb-1 block">← 上一篇</span>
@@ -115,10 +115,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           ) : (
             <div className="flex-1" />
           )}
-          
+
           {adjacentPosts.prev ? (
             <Link
-              href={`/blog/${adjacentPosts.prev.slug}`}
+              href={`/blog/${encodeURIComponent(adjacentPosts.prev.slug)}`}
               className="flex-1 text-right group"
             >
               <span className="text-sm text-[#64748b] mb-1 block">下一篇 →</span>
