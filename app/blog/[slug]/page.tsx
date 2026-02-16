@@ -46,7 +46,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   if (!post) {
     return (
       <div className="max-w-5xl mx-auto px-6 py-12">
-        <p className="text-[#64748b]">文章不存在</p>
+        <p className="text-[var(--text-muted)]">文章不存在</p>
       </div>
     );
   }
@@ -58,7 +58,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     <div className="max-w-5xl mx-auto px-6 py-12">
       <Link
         href="/blog"
-        className="inline-flex items-center gap-2 text-[#c9a227] hover:text-[#b8931f] mb-8 transition-colors"
+        className="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--accent)] mb-8 transition-colors"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -68,10 +68,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
       <article>
         <header className="mb-8">
-          <h1 className="text-4xl font-serif font-bold text-[#1e3a5f] mb-4">
+          <h1 className="text-4xl font-serif font-bold text-[var(--primary)] mb-4">
             {post.title}
           </h1>
-          <div className="flex items-center gap-4 text-[#64748b]">
+          <div className="flex items-center gap-4 text-[var(--text-muted)]">
             <span>{post.date}</span>
             {post.readingTime && (
               <span className="flex items-center gap-1">
@@ -86,7 +86,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs text-[#c9a227] bg-[#fef9e7] px-2 py-1 rounded"
+                    className="text-xs text-[var(--accent)] bg-[var(--section-bg)] px-2 py-1 rounded"
                   >
                     {tag}
                   </span>
@@ -97,20 +97,20 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </header>
 
         <div
-          className="prose prose-lg max-w-none text-[#334155]"
+          className="prose prose-lg max-w-none text-[var(--foreground)]"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
       </article>
 
-      <nav className="mt-12 pt-8 border-t border-[#e2e8f0]">
+      <nav className="mt-12 pt-8 border-t border-[var(--border)]">
         <div className="flex justify-between items-center">
           {adjacentPosts.next ? (
             <Link
               href={`/blog/${encodeURIComponent(adjacentPosts.next.slug)}`}
               className="flex-1 group"
             >
-              <span className="text-sm text-[#64748b] mb-1 block">← 上一篇</span>
-              <span className="text-[#1e3a5f] group-hover:text-[#c9a227] transition-colors font-medium line-clamp-1">
+              <span className="text-sm text-[var(--text-muted)] mb-1 block">← 上一篇</span>
+              <span className="text-[var(--primary)] group-hover:text-[var(--accent)] transition-colors font-medium line-clamp-1">
                 {adjacentPosts.next.title}
               </span>
             </Link>
@@ -123,8 +123,8 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               href={`/blog/${encodeURIComponent(adjacentPosts.prev.slug)}`}
               className="flex-1 text-right group"
             >
-              <span className="text-sm text-[#64748b] mb-1 block">下一篇 →</span>
-              <span className="text-[#1e3a5f] group-hover:text-[#c9a227] transition-colors font-medium line-clamp-1">
+              <span className="text-sm text-[var(--text-muted)] mb-1 block">下一篇 →</span>
+              <span className="text-[var(--primary)] group-hover:text-[var(--accent)] transition-colors font-medium line-clamp-1">
                 {adjacentPosts.prev.title}
               </span>
             </Link>

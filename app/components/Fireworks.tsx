@@ -15,6 +15,8 @@ interface Particle {
 export default function Fireworks() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
+  const animatingRef = useRef(false);
+  const rafRef = useRef<number>(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -48,12 +50,21 @@ export default function Fireworks() {
           size: Math.random() * 3 + 2,
         });
       }
+      if (!animatingRef.current) {
+        animatingRef.current = true;
+        animate();
+      }
     };
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particlesRef.current = particlesRef.current.filter((p) => p.alpha > 0);
+
+      if (particlesRef.current.length === 0) {
+        animatingRef.current = false;
+        return;
+      }
 
       particlesRef.current.forEach((p) => {
         p.x += p.vx;
@@ -69,7 +80,7 @@ export default function Fireworks() {
         ctx.globalAlpha = 1;
       });
 
-      requestAnimationFrame(animate);
+      rafRef.current = requestAnimationFrame(animate);
     };
 
     const handleClick = (e: MouseEvent) => {
@@ -77,17 +88,18 @@ export default function Fireworks() {
     };
 
     window.addEventListener('click', handleClick);
-    animate();
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('click', handleClick);
+      cancelAnimationFrame(rafRef.current);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       className="fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]"
     />
   );

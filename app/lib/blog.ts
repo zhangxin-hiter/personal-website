@@ -1,8 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
 import { unified } from 'unified';
@@ -93,9 +91,10 @@ export async function markdownToHtml(markdown: string): Promise<string> {
 }
 
 export function calculateReadingTime(content: string): string {
-  const wordsPerMinute = 300;
-  const words = content.trim().split(/\s+/).length;
-  const minutes = Math.ceil(words / wordsPerMinute);
+  const chineseChars = (content.match(/[\u4e00-\u9fff]/g) || []).length;
+  const englishWords = content.replace(/[\u4e00-\u9fff]/g, '').trim().split(/\s+/).filter(Boolean).length;
+  const totalWords = chineseChars + englishWords;
+  const minutes = Math.max(1, Math.ceil(totalWords / 300));
   return `${minutes} 分钟`;
 }
 
