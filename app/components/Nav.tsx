@@ -28,7 +28,7 @@ export default function Nav() {
       ];
 
   return (
-    <nav className="bg-[var(--primary)] border-b border-[var(--accent)] sticky top-0 z-50 shadow-lg" role="navigation" aria-label="主导航">
+    <nav className="bg-[var(--nav-bg)] border-b border-[var(--accent)] sticky top-0 z-50 shadow-lg" role="navigation" aria-label="主导航">
       <div className="max-w-5xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <a href={isEnglish ? "/en" : "/"} className="text-xl font-serif font-semibold text-white hover:text-[var(--accent)] transition-colors" aria-label={isEnglish ? "Xin Zhang Homepage" : "张昕主页"}>
