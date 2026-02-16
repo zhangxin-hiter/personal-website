@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navigation({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -26,28 +27,32 @@ export default function Navigation({ children }: { children: React.ReactNode }) 
 
   return (
     <>
-      <nav className="bg-[#1e3a5f] border-b border-[#c9a227] sticky top-0 z-50 shadow-lg">
+      <nav className="bg-[#1e3a5f] border-b border-[#c9a227] sticky top-0 z-50 shadow-lg" role="navigation" aria-label="主导航">
         <div className="max-w-5xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <a href={isEnglish ? "/en" : "/"} className="text-xl font-serif font-semibold text-white hover:text-[#c9a227] transition-colors">
+            <a href={isEnglish ? "/en" : "/"} className="text-xl font-serif font-semibold text-white hover:text-[#c9a227] transition-colors" aria-label={isEnglish ? "Xin Zhang Homepage" : "张昕主页"}>
               {isEnglish ? "Xin Zhang" : "张昕"} <span className="text-sm text-gray-400">| Xin Zhang</span>
             </a>
             <div className="flex items-center gap-6">
-              <div className="flex gap-6">
+              <div className="flex gap-6" role="menubar">
                 {navItems.map((item) => (
                   <a 
                     key={item.href} 
-                    href={item.href} 
+                    href={item.href}
+                    role="menuitem"
                     className={`text-sm transition-colors hidden md:block ${item.isPage ? (pathname === item.href ? "text-[#c9a227]" : "text-gray-300 hover:text-[#c9a227]") : "text-gray-300 hover:text-[#c9a227]"}`}
                   >
                     {item.label}
                   </a>
                 ))}
               </div>
-              <div className="flex items-center gap-2 border-l border-gray-600 pl-4">
-                <a href="/" className={`text-sm font-medium ${!isEnglish ? "text-[#c9a227]" : "text-gray-300 hover:text-[#c9a227]"} transition-colors`}>中</a>
-                <span className="text-gray-500">|</span>
-                <a href="/en" className={`text-sm font-medium ${isEnglish ? "text-[#c9a227]" : "text-gray-300 hover:text-[#c9a227]"} transition-colors`}>EN</a>
+              <div className="flex items-center gap-2 border-l border-gray-600 pl-4" role="group" aria-label="语言切换">
+                <a href="/" className={`text-sm font-medium ${!isEnglish ? "text-[#c9a227]" : "text-gray-300 hover:text-[#c9a227]"} transition-colors`} aria-label="切换到中文" aria-current={!isEnglish ? "page" : undefined}>中</a>
+                <span className="text-gray-500" aria-hidden="true">|</span>
+                <a href="/en" className={`text-sm font-medium ${isEnglish ? "text-[#c9a227]" : "text-gray-300 hover:text-[#c9a227]"} transition-colors`} aria-label="Switch to English" aria-current={isEnglish ? "page" : undefined}>EN</a>
+                <div className="ml-2">
+                  <ThemeToggle />
+                </div>
               </div>
             </div>
           </div>

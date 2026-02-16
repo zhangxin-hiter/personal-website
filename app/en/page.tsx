@@ -1,12 +1,32 @@
 import { AnimatedSection } from "../components/animations";
 import BlogPreview from "../components/BlogPreview";
 import Giscus from "../components/Giscus";
+import type { Metadata } from "next";
+import { GISCUS_CONFIG } from "../lib/config";
+import Image from "next/image";
 
-const GISCUS_CONFIG = {
-  repo: "zhangxin-hiter/personal-website",
-  repoId: "R_kgDORQsOIQ",
-  category: "Announcements",
-  categoryId: "DIC_kwDORQsOIc4C2fRb",
+export const metadata: Metadata = {
+  title: "Xin Zhang - Personal Website",
+  description: "Telecommunications Engineering undergraduate at HIT Shenzhen, embedded systems developer specializing in microcontroller development and intelligent hardware design.",
+  keywords: ["Xin Zhang", "Harbin Institute of Technology", "Telecommunications Engineering", "Embedded Systems", "STM32", "Microcontroller"],
+  openGraph: {
+    title: "Xin Zhang - Personal Website",
+    description: "Telecommunications Engineering undergraduate at HIT Shenzhen, embedded systems developer",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Xin Zhang - Personal Website",
+    description: "Telecommunications Engineering undergraduate at HIT Shenzhen, embedded systems developer",
+  },
+  alternates: {
+    canonical: "/en",
+    languages: {
+      "en-US": "/en",
+      "zh-CN": "/",
+    },
+  },
 };
 
 export default function Home() {
@@ -35,11 +55,13 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="w-48 h-48 rounded-full overflow-hidden hover-scale animate-scale-in delay-200 shadow-xl ring-4 ring-[#c9a227] ring-offset-4">
-            <img 
+          <div className="w-48 h-48 rounded-full overflow-hidden hover-scale animate-scale-in delay-200 shadow-xl ring-4 ring-[#c9a227] ring-offset-4 relative">
+            <Image 
               src="/photo.jpg" 
-              alt="Xin Zhang" 
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              alt="Xin Zhang"
+              fill
+              className="object-cover transition-transform duration-500 hover:scale-110"
+              priority
             />
           </div>
         </div>

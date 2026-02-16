@@ -3,6 +3,12 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeRaw from 'rehype-raw';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
 
 const postsDirectory = path.join(process.cwd(), 'content/blog');
 
@@ -13,6 +19,12 @@ export interface BlogPost {
   description: string;
   tags?: string[];
   contentHtml?: string;
+  readingTime?: string;
+}
+
+export interface AdjacentPosts {
+  prev: BlogPost | null;
+  next: BlogPost | null;
 }
 
 export function getAllPosts(): BlogPost[] {
@@ -58,10 +70,38 @@ export function getPostBySlug(slug: string): BlogPost | null {
     description: data.description || '',
     tags: data.tags || [],
     contentHtml: content,
+    readingTime: calculateReadingTime(content),
   };
 }
 
 export async function markdownToHtml(markdown: string): Promise<string> {
-  const result = await remark().use(html).process(markdown);
+  const result = await unified()
+    .use(remarkParse)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeHighlight)
+    .use(rehypeStringify)
+    .process(markdown);
   return result.toString();
+}
+
+export function calculateReadingTime(content: string): string {
+  const wordsPerMinute = 300;
+  const words = content.trim().split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} 分钟`;
+}
+
+export function getAdjacentPosts(currentSlug: string): AdjacentPosts {
+  const posts = getAllPosts();
+  const currentIndex = posts.findIndex((post) => post.slug === currentSlug);
+
+  if (currentIndex === -1) {
+    return { prev: null, next: null };
+  }
+
+  return {
+    prev: currentIndex > 0 ? posts[currentIndex - 1] : null,
+    next: currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null,
+  };
 }

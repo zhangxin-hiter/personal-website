@@ -1,13 +1,8 @@
 import { AnimatedSection } from "./components/animations";
 import Giscus from "./components/Giscus";
 import BlogPreview from "./components/BlogPreview";
-
-const GISCUS_CONFIG = {
-  repo: "zhangxin-hiter/personal-website",
-  repoId: "R_kgDORQsOIQ",
-  category: "Announcements",
-  categoryId: "DIC_kwDORQsOIc4C2fRb",
-};
+import { GISCUS_CONFIG } from "./lib/config";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -33,11 +28,13 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="w-48 h-48 rounded-full overflow-hidden hover-scale animate-scale-in delay-200 shadow-xl ring-4 ring-[#c9a227] ring-offset-4">
-            <img 
+          <div className="w-48 h-48 rounded-full overflow-hidden hover-scale animate-scale-in delay-200 shadow-xl ring-4 ring-[#c9a227] ring-offset-4 relative">
+            <Image 
               src="/photo.jpg" 
-              alt="张昕" 
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              alt="张昕"
+              fill
+              className="object-cover transition-transform duration-500 hover:scale-110"
+              priority
             />
           </div>
         </div>
