@@ -246,6 +246,72 @@ html {
   }
 }
 
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 10000;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-contrast: high) {
+  :root {
+    --border: #000000;
+    --text-muted: #333333;
+  }
+
+  .dark {
+    --border: #ffffff;
+    --text-muted: #cccccc;
+  }
+}
+
+@media print {
+  nav,
+  .floating-dock,
+  .back-to-top,
+  .fireworks-canvas,
+  .scroll-progress {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  a {
+    text-decoration: underline;
+    color: black !important;
+  }
+
+  .card,
+  article {
+    break-inside: avoid;
+  }
+}
+
 pre {
   background: #f6f8fa;
   border-radius: 6px;
