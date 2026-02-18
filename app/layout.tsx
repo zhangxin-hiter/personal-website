@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Fireworks from "./components/Fireworks";
 import BackToTop from "./components/BackToTop";
 import ScrollProgress from "./components/ScrollProgress";
+import FloatingDock from "./components/FloatingDock";
 import { ThemeProvider } from "./components/ThemeProvider";
 import "./globals.css";
 import "katex/dist/katex.min.css";
@@ -59,6 +60,16 @@ export default function RootLayout({
           </main>
           <Footer />
           <BackToTop />
+          <FloatingDock
+            items={[
+              { icon: <span>🏠</span>, label: "Home", href: "#" },
+              { icon: <span>🎓</span>, label: "Education", href: "#education" },
+              { icon: <span>💻</span>, label: "Projects", href: "#projects" },
+              { icon: <span>🛠</span>, label: "Skills", href: "#skills" },
+              { icon: <span>🏆</span>, label: "Awards", href: "#awards" },
+              { icon: <span>📧</span>, label: "Contact", href: "#contact" },
+            ]}
+          />
         </ThemeProvider>
       </body>
     </html>

@@ -12,17 +12,17 @@ export default function Nav() {
   const navItems = isEnglish
     ? [
         { href: "#education", label: "Education" },
-        { href: "#internship", label: "Internship" },
         { href: "#projects", label: "Projects" },
         { href: "#skills", label: "Skills" },
+        { href: "#awards", label: "Awards" },
         { href: "#contact", label: "Contact" },
         { href: "/blog", label: "Blog", isPage: true },
       ]
     : [
-        { href: "#education", label: "教育背景" },
-        { href: "#internship", label: "实习经历" },
+        { href: "#education", label: "教育经历" },
         { href: "#projects", label: "项目经历" },
         { href: "#skills", label: "专业技能" },
+        { href: "#awards", label: "荣誉奖励" },
         { href: "#contact", label: "联系方式" },
         { href: "/blog", label: "博客", isPage: true },
       ];
